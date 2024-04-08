@@ -1,11 +1,13 @@
-import { Link } from 'expo-router';
+import { Link, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function Index() {
+  const params = useLocalSearchParams();
+
   return (
     <View style={styles.container}>
-      <Text>Test !</Text>
+      <Text>Bonjour {params.name}!!</Text>
       <StatusBar style="auto" />
     </View>
   );
