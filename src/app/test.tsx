@@ -5,9 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text>Bienvenue dans notre App de QCM!!</Text>
+      <Text>Test !</Text>
       <StatusBar style="auto" />
-      <Link href="/test">Commencer le test</Link>
     </View>
   );
 }
