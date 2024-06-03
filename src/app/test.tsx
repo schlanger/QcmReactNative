@@ -1,8 +1,9 @@
-import { Link, useLocalSearchParams } from 'expo-router';
+import { Link, Redirect, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { router } from 'expo-router';
 
 export default function Index() {
   
@@ -38,6 +39,11 @@ export default function Index() {
     setQuestionId(nextQuestionId);
     setQuestion(result);
     setResponses(responses);
+    if (nextQuestionId === 4) {
+      router.navigate({
+        pathname: '/',
+      });
+    }
   };
 
   useEffect(() => {
@@ -56,9 +62,10 @@ export default function Index() {
       <Text style={styles.size}>Bonjour {params.name}!!</Text>
       <Text style={styles.size}>{question}</Text>
       {/* Afficher les réponses de manière aléatoire */}
+
       {responses.map((response, index) => (
         <TouchableOpacity key={index} onPress={() => goToNextQuestion()}>
-          <Text style={styles.size}>{response}</Text>
+          <Text style={styles.size2}>{response}</Text>
         </TouchableOpacity>
       ))}
       <StatusBar style="auto" />
@@ -77,5 +84,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textDecorationColor: 'red',
     color: 'white',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  size2: {
+    fontSize: 30,
+    textDecorationColor: 'red',
+    color: 'white',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: 'green',
+    margin : 10,
   }
+
 });
