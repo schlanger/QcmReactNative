@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 
-const MyButton = ({ handleRedirect }: { handleRedirect: () => void }) => {
+const MyButton = ({ handleRedirect, buttonText }: { handleRedirect: () => void; buttonText: string }) => {
     return (
         <Button mode="elevated" onPress={handleRedirect}>
-            Commencer le QCM !!
+            {buttonText}
         </Button>
     );
 };
