@@ -35,7 +35,7 @@ export default function Index() {
       />
       <StatusBar style="auto" />
       
-      <MyButton handleRedirect={handleRedirect} />
+      <MyButton handleRedirect={handleRedirect} buttonText='commencer le QCM ' />
       </SafeAreaView>
       </View>
   </PaperProvider>

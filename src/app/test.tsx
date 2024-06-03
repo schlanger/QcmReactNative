@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
+import MyButton from '../Component/MyButton';
 
 export default function Index() {
   
@@ -34,16 +35,17 @@ export default function Index() {
 
   const goToNextQuestion = async () => {
     const nextQuestionId = questionId + 1;
+    if (nextQuestionId > 4) {
+      router.navigate({
+        pathname: '/',
+      });
+      return;
+    }
     const result = await fetchQuestionById(nextQuestionId);
     const responses = await fetchResponsesByQuestionId(nextQuestionId);
     setQuestionId(nextQuestionId);
     setQuestion(result);
     setResponses(responses);
-    if (nextQuestionId === 4) {
-      router.navigate({
-        pathname: '/',
-      });
-    }
   };
 
   useEffect(() => {
@@ -64,8 +66,8 @@ export default function Index() {
       {/* Afficher les réponses de manière aléatoire */}
 
       {responses.map((response, index) => (
-        <TouchableOpacity key={index} onPress={() => goToNextQuestion()}>
-          <Text style={styles.size2}>{response}</Text>
+        <TouchableOpacity style ={styles.pad}  key={index} onPress={() => goToNextQuestion()}>
+          <MyButton  handleRedirect={goToNextQuestion} buttonText={response} />
         </TouchableOpacity>
       ))}
       <StatusBar style="auto" />
@@ -87,14 +89,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
   },
-  size2: {
-    fontSize: 30,
-    textDecorationColor: 'red',
-    color: 'white',
-    justifyContent: 'center',
+  pad: {
     padding: 10,
-    backgroundColor: 'green',
-    margin : 10,
   }
 
 });
