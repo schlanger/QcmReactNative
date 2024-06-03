@@ -35,7 +35,7 @@ export default function Index() {
       />
       <StatusBar style="auto" />
       
-      <Button mode="contained" onPress={() => {handleRedirect()}}>Commencer le QCM !!</Button>
+      <Button mode="elevated" onPress={() => {handleRedirect()}}>Commencer le QCM !!</Button>
       </SafeAreaView>
       </View>
   </PaperProvider>
