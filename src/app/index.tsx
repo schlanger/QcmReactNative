@@ -2,10 +2,10 @@ import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
-import { Button } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {SafeAreaView, TextInput} from 'react-native';
+import MyButton from '../Component/MyButton';
 
 
 export default function Index() {
@@ -35,7 +35,7 @@ export default function Index() {
       />
       <StatusBar style="auto" />
       
-      <Button mode="elevated" onPress={() => {handleRedirect()}}>Commencer le QCM !!</Button>
+      <MyButton handleRedirect={handleRedirect} />
       </SafeAreaView>
       </View>
   </PaperProvider>
