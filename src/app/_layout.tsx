@@ -1,4 +1,5 @@
 import { Stack,Tabs } from "expo-router";
+import { PaperProvider } from 'react-native-paper';
 export default function Layout() {
-    return <Stack/>;
+    return <PaperProvider><Stack/></PaperProvider>;
 }
