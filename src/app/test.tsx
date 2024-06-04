@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
 import MyButton from '../Component/MyButton';
+import { Stack } from 'expo-router';
 
 export default function Index() {
   
@@ -61,6 +62,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: 'white'} }} />
       <Text style={styles.size}>Bonjour {params.name}!!</Text>
       <Text style={styles.size}>{question}</Text>
       {/* Afficher les réponses de manière aléatoire */}

@@ -1,7 +1,6 @@
-import { Link } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { PaperProvider } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {SafeAreaView, TextInput} from 'react-native';
@@ -24,8 +23,8 @@ export default function Index() {
     }
 
   return (
-    <PaperProvider>
       <View style={styles.container}>
+      <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: "#8A4FBF"} }} />
     <SafeAreaView> 
     <Text>Bienvenue dans notre App de QCM!!</Text>
       <TextInput
@@ -38,7 +37,6 @@ export default function Index() {
       <MyButton handleRedirect={handleRedirect} buttonText='commencer le QCM ' />
       </SafeAreaView>
       </View>
-  </PaperProvider>
   );
 }
 
