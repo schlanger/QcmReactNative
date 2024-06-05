@@ -6,9 +6,11 @@ import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
 import MyButton from '../Component/MyButton';
 import { Stack } from 'expo-router';
+import TimerComponent from "../Component/TimerComponent";
 
 export default function Index() {
-  
+
+
   const params = useLocalSearchParams();
   const [question, setQuestion] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<number>(1);
@@ -61,10 +63,14 @@ export default function Index() {
   }, []);
 
   return (
+
     <View style={styles.container}>
+
       <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: 'white'} }} />
       <Text style={styles.size}>Bonjour {params.name}!!</Text>
+      <TimerComponent duration={10} />
       <Text style={styles.size}>{question}</Text>
+
       {/* Afficher les réponses de manière aléatoire */}
 
       {responses.map((response, index) => (
