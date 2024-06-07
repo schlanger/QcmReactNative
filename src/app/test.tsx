@@ -14,7 +14,8 @@ export default function Index() {
   const params = useLocalSearchParams();
   const [question, setQuestion] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<number>(1);
-  const [responses, setResponses] = useState<string[]>([]); // Utilisez un tableau pour stocker les réponses
+  const [responses, setResponses] = useState<{ title: string; correct: boolean }[]>([]);
+  const [score, setScore] = useState<number>(0);
 
   const fetchQuestionById = async (id: number) => {
     try {
@@ -29,13 +30,22 @@ export default function Index() {
   const fetchResponsesByQuestionId = async (id: number) => {
     try {
       const response = await axios.get(`https://qcm-api-a108ec633b51.herokuapp.com/reponse/${id}`);
-      return response.data.rows.map((row: any) => row.titre); // Mappez les réponses de la réponse JSON
+      return response.data.rows.map((row: any) => ({ title: row.titre, correct: row.correct }));
     } catch (error) {
       console.error('Error fetching responses:', error);
       return [];
     }
   };
 
+  const checkAnswer = (selectedAnswer: string) => {
+    const correctAnswer = responses.find(response => response.title === selectedAnswer);
+    console.log('Correct answer:', correctAnswer);
+    if (correctAnswer && correctAnswer.correct) {
+      setScore(prevScore => prevScore + 1);
+    }
+
+    goToNextQuestion();
+  };
   const goToNextQuestion = async () => {
     const nextQuestionId = questionId + 1;
     if (nextQuestionId > 4) {
@@ -62,26 +72,27 @@ export default function Index() {
     fetchData();
   }, []);
 
-  return (
 
-    <View style={styles.container}>
 
-      <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: 'white'} }} />
-      <Text style={styles.size}>Bonjour {params.name}!!</Text>
-      <TimerComponent duration={10} />
-      <Text style={styles.size}>{question}</Text>
 
-      {/* Afficher les réponses de manière aléatoire */}
 
-      {responses.map((response, index) => (
-        <TouchableOpacity style ={styles.pad}  key={index} onPress={() => goToNextQuestion()}>
-          <MyButton  handleRedirect={goToNextQuestion} buttonText={response} />
-        </TouchableOpacity>
-      ))}
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    return (
+        <View style={styles.container}>
+          <Text style={styles.score}>Score: {score}  </Text>
+          <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: 'white'} }} />
+          <Text style={styles.size}>Bonjour {params.name}!!</Text>
+          <TimerComponent duration={10} />
+          <Text style={styles.size}>{question}</Text>
+          {responses.map((response, index) => (
+              <View style={styles.pad} key={index} >
+                <MyButton handleRedirect={() => checkAnswer(response.title)}  buttonText={response.title} />
+              </View>
+          ))}
+          <StatusBar style="auto" />
+        </View>
+    );
+  }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -99,6 +110,10 @@ const styles = StyleSheet.create({
   },
   pad: {
     padding: 10,
-  }
+  },
+  score: {
+    fontSize: 20,
+    color: 'white',
+  },
 
 });
