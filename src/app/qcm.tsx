@@ -50,7 +50,10 @@ export default function Index() {
     const nextQuestionId = questionId + 1;
     if (nextQuestionId > 4) {
       router.navigate({
-        pathname: '/',
+        pathname: '/result',
+        params: { score: score ,
+                  name : params.name
+        },
       });
       return;
     }

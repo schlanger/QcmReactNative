@@ -17,7 +17,7 @@ export default function Index() {
 
   const handleRedirect = () => {
     router.navigate({
-      pathname: '/test',
+      pathname: '/qcm',
       params: { name: text }
 
     });
