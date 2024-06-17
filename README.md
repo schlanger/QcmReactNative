@@ -23,3 +23,8 @@ Les workflows se trouvent dans le dossier `.github/workflows`
 
 `eslint.yml` permet de  vérifier automatiquement la syntaxe en utilisant lint et de vérifier que le langage utilisé est du TypeScript.
 
+## Auteurs 
+
+[Anthonin Helias](https://github.com/AnthoninHelias). 
+
+[Yehouda Schlanger](https://github.com/schlanger). 
