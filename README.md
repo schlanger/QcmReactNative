@@ -9,13 +9,15 @@ Pour démarrer l'application sur le téléphone il faut lancer la commande suiva
 
 ## Bien commencer avec React Native 
 
-Lien vers la documentation : https://reactnative.dev/docs/environment-setup .
+Lien vers la documentation :  [Documentation](https://reactnative.dev/docs/environment-setup). 
  
 ## Outils pour lancer l'application ( au choix )
 
-- Installer l'application Expo Go sur le téléphone pour afficher l'application en local : .[Télécharger Expo].(https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en).
+- Installer l'application Expo Go sur le téléphone pour afficher l'application en local : [Télécharger Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en).
 
-- Installer Android Studio sur l'ordinateur : .[Télécharger Android Studio].(https://developer.android.com/studio?hl=fr).
+- Installer Android Studio sur l'ordinateur : [Télécharger Android Studio](https://developer.android.com/studio?hl=fr).
+
+[Télécharger Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en).
 
 ## Fonctionnement des workflows
 
