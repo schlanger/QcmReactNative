@@ -17,8 +17,6 @@ Lien vers la documentation :  [Documentation](https://reactnative.dev/docs/envir
 
 - Installer Android Studio sur l'ordinateur : [Télécharger Android Studio](https://developer.android.com/studio?hl=fr).
 
-[Télécharger Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en).
-
 ## Fonctionnement des workflows
 
 Les workflows se trouvent dans le dossier `.github/workflows`
