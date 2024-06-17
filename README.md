@@ -1,6 +1,6 @@
 # Installation des librairies
 
-Pour commencer à travailler sur ce projet il faut dans un premier temps installer toute les dépendances nécessaires au projet.
+Pour commencer à travailler sur ce projet il faut dans un premier temps installer toute les dépendances nécessaires au projet. <br />
 Veuillez exécuter cette commande dans votre terminal : `npm install --force`.
 
 ## Démarrer l'application
