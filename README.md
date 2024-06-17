@@ -23,6 +23,10 @@ Les workflows se trouvent dans le dossier `.github/workflows`
 
 `eslint.yml` permet de  vérifier automatiquement la syntaxe en utilisant lint et de vérifier que le langage utilisé est du TypeScript.
 
+## Lien API "Backend"
+
+[API documentation](https://qcm-api-a108ec633b51.herokuapp.com/doc/)
+
 ## Auteurs 
 
 [Anthonin Helias](https://github.com/AnthoninHelias). 
