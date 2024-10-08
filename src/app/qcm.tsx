@@ -81,19 +81,19 @@ export default function Index() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.score}>Score: {score}</Text>
-      <Stack.Screen options={{ title: 'Quizz', headerStyle: { backgroundColor: 'white' } }} />
-      <Text style={styles.size}>Bonjour {params.name}!!</Text>
-      <TimerComponent duration={10} />
-      <Text style={styles.size}>{question}</Text>
-      {responses.map((response, index) => (
-        <View style={styles.pad} key={index}>
-          <MyButton handleRedirect={() => checkAnswer(response.title)} buttonText={response.title} />
-        </View>
-      ))}
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+        <Text style={styles.score}>Score: {score}  </Text>
+        <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: 'white'} }} />
+        <Text style={styles.size}>Bonjour {params.name}!!</Text>
+        <TimerComponent duration={10} />
+        <Text style={styles.size}>{question}</Text>
+        {responses.map((response, index) => (
+            <View style={styles.pad} key={index} >
+              <MyButton handleRedirect={() => checkAnswer(response.title)}  buttonText={response.title} />
+            </View>
+        ))}
+        <StatusBar style="auto" />
+      </View>
   );
 }
 
