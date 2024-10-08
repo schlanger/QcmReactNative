@@ -10,7 +10,6 @@ import TimerComponent from "../Component/TimerComponent";
 
 export default function Index() {
 
-
   const params = useLocalSearchParams();
   const [question, setQuestion] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<number>(1);
@@ -41,19 +40,25 @@ export default function Index() {
     const correctAnswer = responses.find(response => response.title === selectedAnswer);
     console.log('Correct answer:', correctAnswer);
     if (correctAnswer && correctAnswer.correct) {
-      setScore(prevScore => prevScore + 1);
+      // Utilise une fonction pour accéder à l'état actuel et mettre à jour correctement
+      setScore(prevScore => {
+        const updatedScore = prevScore + 1;
+        goToNextQuestion(updatedScore); // On passe le score mis à jour à goToNextQuestion
+        return updatedScore;
+      });
+    } else {
+      // Si la réponse est incorrecte, on passe quand même à la prochaine question sans incrémenter le score
+      goToNextQuestion(score);
     }
-
-    goToNextQuestion();
   };
-  const goToNextQuestion = async () => {
+
+  const goToNextQuestion = async (updatedScore: number) => {
     const nextQuestionId = questionId + 1;
     if (nextQuestionId > 4) {
+      // Navigue vers la page de résultat avec le score mis à jour
       router.navigate({
         pathname: '/result',
-        params: { score: score ,
-                  name : params.name
-        },
+        params: { score: updatedScore, name: params.name },
       });
       return;
     }
@@ -75,27 +80,22 @@ export default function Index() {
     fetchData();
   }, []);
 
-
-
-
-
-    return (
-        <View style={styles.container}>
-          <Text style={styles.score}>Score: {score}  </Text>
-          <Stack.Screen options={{ title: 'Quizz', headerStyle: {backgroundColor: 'white'} }} />
-          <Text style={styles.size}>Bonjour {params.name}!!</Text>
-          <TimerComponent duration={10} />
-          <Text style={styles.size}>{question}</Text>
-          {responses.map((response, index) => (
-              <View style={styles.pad} key={index} >
-                <MyButton handleRedirect={() => checkAnswer(response.title)}  buttonText={response.title} />
-              </View>
-          ))}
-          <StatusBar style="auto" />
+  return (
+    <View style={styles.container}>
+      <Text style={styles.score}>Score: {score}</Text>
+      <Stack.Screen options={{ title: 'Quizz', headerStyle: { backgroundColor: 'white' } }} />
+      <Text style={styles.size}>Bonjour {params.name}!!</Text>
+      <TimerComponent duration={10} />
+      <Text style={styles.size}>{question}</Text>
+      {responses.map((response, index) => (
+        <View style={styles.pad} key={index}>
+          <MyButton handleRedirect={() => checkAnswer(response.title)} buttonText={response.title} />
         </View>
-    );
-  }
-
+      ))}
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -118,5 +118,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
   },
-
 });
